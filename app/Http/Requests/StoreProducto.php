@@ -40,6 +40,14 @@ class StoreProducto extends FormRequest
         ];
     }
 
-    
+    // public function withValidator($validator) {
+    //     $validator->after(function ($validator) {
+    //         if ($this->get('name') == 'test') {
+    //             $validator->errors()->add('name', 'No se puede llamar test');
+    //         }
+    //     });
+    // }
+
+
 
 }
