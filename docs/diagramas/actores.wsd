@@ -1,0 +1,14 @@
+@startuml = actores
+
+actor Cliente as Cliente
+actor Feriante as Feriante
+actor Encargado as Encargado
+actor Administrador as Administrador
+
+Cliente --> Feriante : Realiza Compras
+Cliente --> Encargado : Interactúa con Encargado
+Cliente --> Administrador : Contacta Administrador
+Feriante --> Encargado : Reporta a Encargado
+Encargado --> Administrador : Informa a Administrador
+
+@enduml

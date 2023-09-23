@@ -24,6 +24,7 @@ Route::controller(ProductoController::class)->group(function(){
     Route::post('productos', 'store')->name('productos.store');
     Route::get('productos/{producto}/edit', 'edit')->name('productos.edit'); 
     Route::put('productos/{producto}', 'update')->name('productos.update');
+    Route::delete('productos/{producto}', 'destroy')->name('productos.destroy');
 });
 
 

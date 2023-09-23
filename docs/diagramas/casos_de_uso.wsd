@@ -1,0 +1,67 @@
+@startuml = casos_de_uso
+
+actor Cliente as Cliente
+actor Feriante as Feriante
+actor Encargado as Encargado
+actor Administrador as Administrador
+
+usecase Ver_Productos as "Ver Productos"
+usecase Agregar_al_Carrito as "Agregar al Carrito"
+usecase Realizar_Transaccion as "Realizar Transacción"
+usecase Listar_Ofertas as "Listar Ofertas"
+usecase Gestionar_Inventario as "Gestionar Inventario"
+usecase Procesar_Pedidos as "Procesar Pedidos"
+usecase Gestionar_Actividades as "Gestionar Actividades"
+usecase Administrar_Sistema as "Administrar Sistema"
+usecase Almacenar_Feriantes as "Almacenar Feriantes"
+usecase Adjuntar_Categorias as "Adjuntar Categorias"
+usecase Gestionar_Informacion as "Gestionar Información"
+usecase Controlar_Tiempos as "Controlar Tiempos"
+usecase Realizar_Venta as "Realizar Venta"
+usecase Generar_Codigo_Retiro as "Generar Código Retiro"
+usecase Evaluar_Productos_Restantes as "Evaluar Productos Restantes"
+usecase Armar_Combos as "Armar Combos"
+usecase Ofrecer_Ofertas as "Ofrecer Ofertas"
+usecase Administrar_Ajustes as "Administrar Ajustes"
+usecase Calcular_Estadisticas as "Calcular Estadísticas"
+usecase Generar_Reportes as "Generar Reportes"
+usecase Registrar_Acciones as "Registrar Acciones"
+usecase Gestionar_Usuarios as "Gestionar Usuarios"
+usecase Gestionar_Roles as "Gestionar Roles"
+usecase Gestionar_Sesiones as "Gestionar Sesiones"
+usecase Enviar_Notificaciones as "Enviar Notificaciones"
+usecase Personalizar_Configuracion as "Personalizar Configuración"
+usecase Cambiar_Permisos as "Cambiar Permisos"
+
+Cliente --> Ver_Productos
+Cliente --> Agregar_al_Carrito
+Cliente --> Realizar_Transaccion
+Feriante --> Listar_Ofertas
+Feriante --> Gestionar_Inventario
+Feriante --> Procesar_Pedidos
+Encargado --> Gestionar_Actividades
+Administrador --> Administrar_Sistema
+Administrador --> Gestionar_Usuarios
+Administrador --> Gestionar_Roles
+Administrador --> Administrar_Ajustes
+Administrador --> Calcular_Estadisticas
+Administrador --> Generar_Reportes
+Administrador --> Registrar_Acciones
+Cliente --> Enviar_Notificaciones
+Feriante --> Enviar_Notificaciones
+Cliente --> Personalizar_Configuracion
+Feriante --> Personalizar_Configuracion
+Administrador --> Cambiar_Permisos
+
+Gestionar_Actividades --> Listar_Ofertas
+Gestionar_Actividades --> Gestionar_Inventario
+Gestionar_Actividades --> Procesar_Pedidos
+Administrar_Ajustes --> Almacenar_Feriantes
+Administrar_Ajustes --> Adjuntar_Categorias
+Administrar_Sistema --> Gestionar_Usuarios
+Administrar_Sistema --> Gestionar_Roles
+Administrar_Sistema --> Administrar_Ajustes
+Calcular_Estadisticas --> Generar_Reportes
+Registrar_Acciones --> Cambiar_Permisos
+
+@enduml

@@ -12,6 +12,7 @@ class ProductoController extends Controller
 
         $productos = Producto::orderBy('id', 'desc')->paginate();
 
+        //dd($productos);
         return view('productos.index', compact('productos'));
     }
 
@@ -25,11 +26,13 @@ class ProductoController extends Controller
         
         $producto = new Producto();
 
-        $producto->name = $request->name;
-        $producto->description = $request->descripcion;
-        $producto->category = $request->categoria;
+        // $producto->name = $request->input('name');
+        // $producto->description = $request->input('description');
+        // $producto->category = $request->input('category');
 
-        $producto->save();
+        // $producto->save();
+
+        $producto = Producto::create([request()->all()]);
 
         return redirect()->route('productos.show', $producto);
     }
@@ -42,20 +45,28 @@ class ProductoController extends Controller
         return view('productos.edit', ['producto' => $producto]);
     }
 
-    public function update(Request $request, Producto $producto){
+    public function update(StoreProducto $request, Producto $producto){
         
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required'|'min:5',
-            'category'=>'required'
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'description' => 'required'|'min:5',
+        //     'category'=>'required'
+        // ]);
         
-        $producto->name= $request->name;            
-        $producto->description= $request->descripcion;      
-        $producto->category= $request->categoria;  
+        // $producto->name = $request->input('name');
+        // $producto->description = $request->input('description');
+        // $producto->category = $request->input('category');  
         
-        $producto->save();
+        // $producto->save();
+
+        $producto->update($request->all());
 
         return redirect()->route('productos.show', $producto);
+    }
+
+    public function destroy(Producto $producto){
+        $producto->delete();
+
+        return redirect()->route('productos.index');
     }
 }

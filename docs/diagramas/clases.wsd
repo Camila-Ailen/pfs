@@ -1,0 +1,104 @@
+@startuml = clases
+
+class Oferia {
+  +run()
+}
+
+class Cliente {
+  +verProductos()
+  +agregarAlCarrito()
+  +realizarTransaccion()
+}
+
+class Feriante {
+  +listarOfertas()
+  +gestionarInventario()
+  +procesarPedidos()
+}
+
+class Encargado {
+  +gestionarActividades()
+}
+
+class Administrador {
+  +administrarSistema()
+}
+
+class ModuloFeriantes {
+  +almacenarFeriantes()
+  +adjuntarCategorias()
+}
+
+class ModuloExistencias {
+  +gestionarInformacion()
+}
+
+class ModuloVentas {
+  +controlarTiempos()
+  +realizarVenta()
+  +generarCodigoRetiro()
+}
+
+class ModuloOfertas {
+  +evaluarProductosRestantes()
+  +armarCombos()
+  +ofrecerOfertas()
+}
+
+class ModuloGestionParametros {
+  +administrarAjustes()
+}
+
+class EstadisticasYReportes {
+  +calcularEstadisticas()
+  +generarReportes()
+}
+
+class ModuloAuditoria {
+  +registrarAcciones()
+}
+
+class ModuloUsuarios {
+  +gestionarUsuarios()
+  +gestionarRoles()
+  +gestionarSesiones()
+}
+
+class ModuloNotificaciones {
+  +enviarNotificaciones()
+  +personalizarConfiguracion()
+}
+
+class ModuloSeguridadDatos {
+  +cambiarPermisos()
+}
+
+Oferia -- Cliente
+Oferia -- Feriante
+Oferia -- Encargado
+Oferia -- Administrador
+
+Oferia *-- ModuloFeriantes
+Oferia *-- ModuloExistencias
+Oferia *-- ModuloVentas
+Oferia *-- ModuloOfertas
+Oferia *-- ModuloGestionParametros
+Oferia *-- EstadisticasYReportes
+Oferia *-- ModuloAuditoria
+Oferia *-- ModuloUsuarios
+Oferia *-- ModuloNotificaciones
+Oferia *-- ModuloSeguridadDatos
+
+ModuloFeriantes -- Feriante
+ModuloExistencias -- Feriante
+ModuloVentas -- Feriante
+ModuloOfertas -- Feriante
+ModuloGestionParametros -- Administrador
+EstadisticasYReportes -- Administrador
+ModuloAuditoria -- Administrador
+ModuloUsuarios -- Administrador
+ModuloNotificaciones -- Cliente
+ModuloNotificaciones -- Feriante
+ModuloSeguridadDatos -- Administrador
+
+@enduml
