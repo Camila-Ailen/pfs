@@ -17,23 +17,4 @@ use App\Http\Controllers\ProductoController;
 
 Route::get('/', HomeController::class);
 
-Route::controller(ProductoController::class)->group(function(){
-    Route::get('productos', 'index')->name('productos.index');
-    Route::get('productos/create', 'create')->name('productos.create');
-    Route::get('productos/{producto}', 'show')->name('productos.show');
-    Route::post('productos', 'store')->name('productos.store');
-    Route::get('productos/{producto}/edit', 'edit')->name('productos.edit'); 
-    Route::put('productos/{producto}', 'update')->name('productos.update');
-    Route::delete('productos/{producto}', 'destroy')->name('productos.destroy');
-});
-
-
-/*
-Route::get('productos/{producto}/{categoria?}', function ($producto, $categoria = null) {
-    if ($categoria) {
-    return "El producto $producto es $categoria";
-    } else {
-        return "El producto es $producto";
-    }
-});
-*/
+Route::resource('productos', ProductoController::class);

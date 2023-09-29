@@ -19,6 +19,7 @@ class ProductoFactory extends Factory
     {
         return [
             'name' => $this->faker->sentence(),
+            'slug' => $this->faker->slug(),
             'description' => $this->faker->paragraph(),
             'category' => $this->faker->randomElement(['Comestible', 'Artesania'])
         ];

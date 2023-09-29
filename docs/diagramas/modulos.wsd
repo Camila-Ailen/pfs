@@ -1,0 +1,28 @@
+@startuml = modulos
+package "Feriantes" {
+  
+}
+
+package "Existencias" {
+  
+}
+
+package "Ventas" {
+  
+}
+
+package "Ofertas" {
+  
+}
+
+package "Gestion_de_parametros" {
+  
+}
+
+package "Estadisticas_Reportes" {
+  
+}
+
+
+
+@enduml

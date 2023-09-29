@@ -34,7 +34,7 @@ class ProductoController extends Controller
 
         $producto = Producto::create([request()->all()]);
 
-        return redirect()->route('productos.show', $producto);
+        return redirect()->route('productos.index', $producto);
     }
 
     public function show(Producto $producto){

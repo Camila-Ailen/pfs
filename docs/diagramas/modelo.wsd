@@ -1,0 +1,223 @@
+@startuml = modelo
+
+hide circle
+
+skinparam linetype ortho 
+
+!define ENTITY class
+!define PK <<PK>>
+!define FK <<FK>>
+
+ENTITY Usuario {
+  +ID: int PK
+  DatosContactoID: int FK
+  DireccionID: int FK
+  RolID: int FK
+  EstadoID: int FK
+  --
+  Nombre: string
+  Apellido: string
+    DNI: string
+    FechaNacimiento: date
+    Direccion: string
+}
+
+ENTITY Estado {
+  +ID: int PK
+  -- 
+  Nombre: string
+  Descripcion: string
+}
+
+ENTITY Direccion {
+  +ID: int PK
+  --
+    Calle: string
+    Numero: int
+    Piso: int
+    Departamento: string
+    Localidad: string
+    Provincia: string
+}
+
+ENTITY DatoContacto {
+  +ID: int PK
+  --
+  Celular: string
+  CorreoElectronico: string
+}
+
+ENTITY Rol {
+  +ID: int PK
+  PermisoID: int FK
+  --
+  Nombre: string
+  Descripcion: string
+  Vigencia: string 
+  EstadoRol: string
+  NivelPrioridad: int
+}
+
+ENTITY Permiso {
+  +ID: int PK
+  --
+  Nombre: string 
+  Descripcion: string
+  TipoPermiso: string
+  Vigencia: date
+  EstadoPermiso: string
+
+}
+
+ENTITY AccionAuditoria {
+  +ID: int PK
+  --
+  FechaHora: datetime
+  UsuarioID: int
+  Modulo: string
+  Accion: string
+  AntiguosValores: string
+  NuevosValores: string
+}
+
+ENTITY Cliente {
+  +ID: int PK
+  UsuarioID: int FK
+  CarritoID: int FK
+  --
+  FechaAlta: date
+
+}
+
+ENTITY Feriante {
+  +ID: int PK
+  UsuarioID: int FK
+  EncargadoID: int FK
+  --
+  NombreFantasia: string
+  FechaAlta: date
+  Calificacion: int
+}
+
+
+ENTITY Administrador {
+  +ID: int PK
+  --
+  // Atributos específicos de Administrador
+}
+
+ENTITY Producto {
+  +ID: int PK
+  CategoriaID: int FK
+  SubcategoriaID: int FK
+  --
+  Nombre: string
+  Descripcion: string
+  Precio: decimal
+  Stock: int
+  Vencimiento: date
+}
+
+' ENTITY Stock {
+'   +ID: int PK
+'   FerianteID: int FK
+'   ProductoID: int FK
+'   --
+'   Cantidad: int
+' }
+
+ENTITY FotoProducto {
+  +ID: int PK
+  ProductoID: int FK
+  --
+  Fecha: date
+  Imagen: string
+}
+
+ENTITY Categoria {
+  +ID: int PK
+  --
+  Nombre: string
+  // Otros atributos de categoría
+}
+
+ENTITY Subcategoria {
+  +ID: int PK
+  --
+  Nombre: string
+  // Otros atributos de subcategoría
+}
+
+ENTITY Carrito {
+  +ID: int PK
+  EstadoCarritoID: int FK
+  --
+  Fecha: date
+  
+}
+
+ENTITY EstadoCarrito {
+  +ID: int PK
+  --
+  Nombre: string
+  Descripcion: string
+}
+
+ENTITY Oferta {
+  +ID: int PK
+  FerianteID: int FK
+  -- 
+  Nombre: string
+  Precio: decimal
+  // Otros atributos de oferta
+}
+
+ENTITY Notificacion {
+  +ID: int PK
+  CategoriaNotificacionID: int FK
+  --
+  
+}
+
+ENTITY CategoriaNotificacion {
+  +ID: int PK
+  --
+  Nombre: string
+  Descripcion: string
+}
+
+ENTITY Notificacion_Usuario {
+  +ID: int PK
+  NotificacionID: int FK
+  UsuarioID: int FK
+  --
+}
+
+
+
+Cliente -- Carrito: Realiza
+Carrito }-- Oferta: Contiene
+Carrito }-- Producto: Contiene
+Carrito -- EstadoCarrito: Tiene
+Oferta --|{ Producto: Ofrece
+Feriante --|{ Producto: Ofrece
+Feriante --|{ Oferta: Ofrece
+Feriante }-- Categoria: Asocia
+Producto --{ FotoProducto: Tiene
+Producto }-- Categoria: Pertenece a
+Producto }-- Subcategoria: Pertenece a
+Categoria }-- Subcategoria: Tiene
+Usuario --|{ Rol: Tiene asignado
+Rol --|{ Permiso: Tiene asignado
+Usuario }--{ AccionAuditoria: Realiza
+Usuario -- Cliente : EsCliente
+Usuario -- Feriante : EsFeriante
+Usuario -- Administrador : EsAdministrador
+Usuario -- Direccion : Tiene
+Usuario -- DatoContacto : Tiene
+Usuario -- Estado : Tiene
+Usuario --{ Notificacion_Usuario : Tiene
+Notificacion --{ Notificacion_Usuario : Tiene
+Notificacion -- CategoriaNotificacion : Tiene
+
+@enduml
