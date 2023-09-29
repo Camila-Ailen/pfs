@@ -32,7 +32,9 @@ class ProductoController extends Controller
 
         // $producto->save();
 
-        $producto = Producto::create([request()->all()]);
+        $producto = Producto::create(request()->all());
+
+        
 
         return redirect()->route('productos.index', $producto);
     }
