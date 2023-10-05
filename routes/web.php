@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Mail\ContactMailable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -21,9 +22,8 @@ Route::get('/', HomeController::class);
 
 Route::resource('productos', ProductoController::class);
 
-Route::get('/contact', function () {
-    Mail::to('camila@ejemplo.com')
-    ->send(new ContactMailable());
+Route::get('contact', [ContactController::class, 'index'])
+    ->name('contact.index'); 
+Route::post('contact', [ContactController::class, 'store'])
+    ->name('contact.store');
 
-    return 'Mensaje enviado';
-})->name('contact');
