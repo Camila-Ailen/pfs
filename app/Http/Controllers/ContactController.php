@@ -15,16 +15,21 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'name' => 'required',
+            'correo' => 'required|email',
+            'mensaje' => 'required',
+        ]);
 
 
         Mail::to('oferia@example.com')
             ->send(new ContactMailable($request->all()));
 
-        session()->flash('info', 'Mensaje enviado correctamente');
+        
 
         return redirect()
-            ->route('contact.index');
+            ->route('contact.index')
+            ->with('info', 'Mensaje enviado');
     }
         
 }
