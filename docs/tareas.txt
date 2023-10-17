@@ -3,3 +3,10 @@ Arreglar las vistas y el archivo web
 Pasar los crud
 Definir el diseño del dashboard, ajustar el login
 Diseño de envio de correos
+
+
+
+
+
+
+

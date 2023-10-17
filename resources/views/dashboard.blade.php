@@ -1,10 +1,11 @@
 @extends('layouts.plantilla')
 
-@section('title', 'Dashboard')
+@section('title', 'Home')
 
 @section('content')
+    <h1>Bienvenido a la pagina principal</h1>
 
-
+    
 
 <x-app-layout>
     <x-slot name="header">
@@ -23,5 +24,6 @@
         </div>
     </div>
 </x-app-layout>
+
 
 @endsection
