@@ -122,7 +122,6 @@ ENTITY Producto {
 '   +ID: int PK
 '   FerianteID: int FK
 '   ProductoID: int FK
-'   --
 '   Cantidad: int
 ' }
 

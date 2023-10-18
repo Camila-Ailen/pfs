@@ -11,6 +11,8 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use PhpParser\Node\Stmt\Return_;
 
+use App\Models\Address;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -53,4 +55,9 @@ class User extends Authenticatable
             set: fn($value) => strtolower($value)
         );
     }  
+
+    //relacion uno a uno
+    public function address(){
+        return $this->hasOne(Address::class);
+    }
 }

@@ -69,7 +69,7 @@
               </a>
               <form action="#" method="GET" class="hidden md:block md:pl-2">
                 <label for="topbar-search" class="sr-only">Search</label>
-                <div class="relative md:w-64 md:w-96">
+                <div class="relative md:w-96">
                   <div
                     class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
                   >
@@ -237,7 +237,7 @@
 
               <!-- Dropdown menu -->
               <div
-                class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
+                class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded-xl divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
                 id="dropdown"
               >
                 <div class="py-3 px-4">

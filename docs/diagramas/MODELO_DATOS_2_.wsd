@@ -1,0 +1,202 @@
+@startuml PaquetesTuristicos
+
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+!theme plain
+
+entity "Paquetes Turísticos" as PaquetesTuristicos {
+  PaqueteID : int
+  --
+  Nombre : text
+  FechaInicio : date
+  FechaFinalización : date
+  TitularClienteID : int
+}
+
+ENTITY Pais {
+  PaisID : int PRIMARY_KEY
+  NombrePais : string
+}
+
+ENTITY AuditoriaPaquete {
+  AuditoriaPaqueteID : int PRIMARY_KEY
+  --
+  PaqueteID : int
+  FechaAuditoria : datetime
+  Accion : string
+}
+
+entity "Clientes" as Clientes {
+  ClienteID : int 
+  --
+  Nombre : text
+  Apellido : text
+  DNI : text
+  FechaNacimiento : date
+  Nacionalidad : text
+  Email : text
+  Telefono : text
+  Direccion : text  
+}
+
+ENTITY AuditoriaCliente {
+  AuditoriaClienteID : int PRIMARY_KEY
+  --
+  ClienteID : int
+  FechaAuditoria : datetime
+  Accion : string
+}
+
+entity "Acompañantes" as Acompanantes {
+  AcompananteID : int
+  --
+  PaqueteID : int
+  ClienteID : int
+}
+
+ENTITY Usuario {
+  UsuarioID : int PRIMARY_KEY
+  --
+  NombreUsuario : string
+  Contraseña : string
+  RolID : int
+}
+
+ENTITY AuditoriaUsuario {
+  AuditoriaUsuarioID : int PRIMARY_KEY
+  --
+  UsuarioID : int
+  FechaAuditoria : datetime
+  Accion : string
+}
+
+ENTITY Rol {
+  RolID : int PRIMARY_KEY
+  --
+  NombreRol : string
+}
+
+ENTITY AuditoriaRol {
+  AuditoriaRolID : int PRIMARY_KEY
+  --
+  RolID : int
+    UsuarioID : int
+  FechaAuditoria : datetime
+  Accion : string
+}
+
+ENTITY Permiso {
+  PermisoID : int PRIMARY_KEY
+  --
+  NombrePermiso : string
+}
+
+ENTITY AuditoriaPermiso {
+  AuditoriaPermisoID : int PRIMARY_KEY
+  --
+  PermisoID : int
+  UsuarioID : int
+  FechaAuditoria : datetime
+  Accion : string
+}
+
+ENTITY Empresa {
+  EmpresaID : int PRIMARY_KEY
+  NombreEmpresa : string
+  Direccion : string
+  Telefono : string
+  CorreoElectronico : string
+  Logo : string    
+}
+
+ENTITY AuditoriaEmpresa {
+  AuditoriaEmpresaID : int PRIMARY_KEY
+  --
+  EmpresaID : int
+  UsuarioID : int
+  FechaAuditoria : datetime
+  Accion : string
+}
+
+
+ENTITY Notificacion {
+  NotificacionID : int PRIMARY_KEY
+  FechaNotificacion : datetime
+  Mensaje : string
+}
+
+ENTITY Venta {
+  VentaID : int PRIMARY_KEY
+  ClienteID : int
+  FechaVenta : date
+  EstadoID : int
+  UsuarioID : int
+}
+
+entity Sexo {
+  SexoID : int
+  --
+  NombreSexo : text
+}
+
+ENTITY Pago {
+  PagoID : int PRIMARY_KEY
+  VentaID : int
+  Monto : decimal
+  FechaPago : date
+  MetodoPago : string
+}
+
+entity "Estado Paquete" as EstadoPaquete {
+  EstadoID : int
+  --
+  NombreEstado : text
+}
+
+entity "Estado Venta" as EstadoVenta {
+  EstadoID : int
+  --
+  NombreEstado : text
+}
+
+entity "Estado Cliente" as EstadoCliente {
+  EstadoID : int
+  --
+  NombreEstado : text
+}
+
+entity "Estado Usuario" as EstadoUsuario {
+  EstadoID : int
+  --
+  NombreEstado : text
+}
+
+Sexo --{ Clientes
+EstadoUsuario --{ Usuario
+EstadoPaquete --{ PaquetesTuristicos
+EstadoCliente --{ Clientes
+EstadoVenta --{ Venta
+Pais --{ PaquetesTuristicos
+Pais --{ Clientes
+Venta --{ Pago
+Venta }-- Usuario
+Venta }-- Clientes
+Venta }-- PaquetesTuristicos
+PaquetesTuristicos }-- Empresa
+PaquetesTuristicos --{ AuditoriaPaquete
+Clientes --{ AuditoriaCliente
+Usuario --{ AuditoriaUsuario
+Rol --{ AuditoriaRol
+Permiso --{ AuditoriaPermiso
+Empresa --{ AuditoriaEmpresa
+Venta --{ Acompanantes
+Clientes }-- Acompanantes
+Usuario }|-- Rol
+Rol --|{ Permiso
+Empresa --{ Usuario
+Notificacion }-- Usuario
+
+@enduml
