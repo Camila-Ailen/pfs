@@ -19,6 +19,20 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->unsignedBigInteger('user_state_id');
+            $table->foreign('user_state_id')
+                ->nullable()
+                ->constrained('user_states')
+                ->onDelete('set null')
+                ->onUpdate('cascade');
+
+            $table->unsignedBigInteger('address_id')->unique();
+            $table->foreign('address_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

@@ -63,4 +63,9 @@ class User extends Authenticatable
     public function address(){
         return $this->hasOne(Address::class);
     }
+
+    //relacion uno a muchos (inversa)
+    public function userState(){
+        return $this->belongsTo(UserState::class);
+    }
 }

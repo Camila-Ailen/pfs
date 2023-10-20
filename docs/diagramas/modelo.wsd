@@ -17,9 +17,9 @@ ENTITY Usuario {
   --
   Nombre: string
   Apellido: string
-    DNI: string
-    FechaNacimiento: date
-    Direccion: string
+  DNI: string
+  FechaNacimiento: date
+  Direccion: string
 }
 
 ENTITY Estado {
@@ -42,9 +42,15 @@ ENTITY Direccion {
 
 ENTITY DatoContacto {
   +ID: int PK
+  CelularID: int FK
   --
-  Celular: string
   CorreoElectronico: string
+}
+
+ENTITY Celular {
+  +ID: int PK
+  --
+  Numero: string
 }
 
 ENTITY Rol {
@@ -214,6 +220,7 @@ Usuario -- Feriante : EsFeriante
 Usuario -- Administrador : EsAdministrador
 Usuario -- Direccion : Tiene
 Usuario -- DatoContacto : Tiene
+DatoContacto --{ Celular : Tiene
 Usuario -- Estado : Tiene
 Usuario --{ Notificacion_Usuario : Tiene
 Notificacion --{ Notificacion_Usuario : Tiene
