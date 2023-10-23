@@ -9,11 +9,9 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $guarded=[];
-
-
-public function getRouteKeyName()
+    //relacion muchos a muchos
+    public function users()
     {
-        return 'slug';
+        return $this->belongsToMany(User::class);
     }
 }

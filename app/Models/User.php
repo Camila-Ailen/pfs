@@ -68,4 +68,10 @@ class User extends Authenticatable
     public function userState(){
         return $this->belongsTo(UserState::class);
     }
+
+
+    //relacion muchos a muchos
+    public function categories(){
+        return $this->belongsToMany(Category::class);
+    }
 }
